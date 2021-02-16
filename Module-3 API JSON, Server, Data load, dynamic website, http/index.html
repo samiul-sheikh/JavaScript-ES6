@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+</head>
+
+<body>
+    <h1>JSON</h1>
+    <h2>Javascript Object Notation</h2>
+    <script>
+        const user = {
+            id: 30491,
+            name: "Samiul",
+            lover: {
+                name: "SOmeone",
+                favFood: "Fastfood"
+            },
+            friends: ["Meka", "Dante", "Bitla"],
+            friendsAge: [20, 25, 30]
+        };
+        // convert JS object into JSON string
+        const userJSON = JSON.stringify(user);
+        console.log(userJSON);
+        // {"id":30491,"name":"Samiul","lover":{"name":"SOmeone","favFood":"Fastfood"},"friends":["Meka","Dante","Bitla"],"friendsAge":[20,25,30]}
+
+        // convert JSON string into object
+        const userFromJSON = JSON.parse(userJSON);
+        console.log(userFromJSON);
+        /*{ id: 30491, name: "Samiul", lover: { … }, friends: Array(3), friendsAge: Array(3) }
+        friends: (3)["Meka", "Dante", "Bitla"]
+        friendsAge: (3)[20, 25, 30]
+        id: 30491
+        lover: { name: "SOmeone", favFood: "Fastfood" }
+        name: "Samiul"
+        __proto__: Object*/
+    </script>
+</body>
+
+</html>
