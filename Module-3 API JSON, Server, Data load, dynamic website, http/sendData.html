@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>send data to server</title>
+</head>
+
+<body>
+    <h1>JSON</h1>
+    <h2>Javascript Object Notation</h2>
+    <h3>https://jsonplaceholder.typicode.com/guide</h3>
+    <ul id="users-container">
+    </ul>
+    <input id="title" type="text" placeholder="title">
+    <br>
+    <input id="bodyContent" type="text" placeholder="body">
+    <br>
+    <button id="submit">Submit</button>
+
+    <script>
+        // creating a resource;
+        // const postInfo = { title: 'foooooo', body: 'barrrrr', userId: 1 }
+
+        // add click handler
+        document.getElementById("submit").addEventListener("click", function () {
+            // console.log("clicked submit button");
+            const title = document.getElementById("title").value;
+            const bodyContent = document.getElementById("bodyContent").value;
+            // console.log(title, bodyContent);
+            const post = { title: title, body: bodyContent };
+            nowPostToServer(post);
+        })
+
+        // creating a post;
+        function nowPostToServer(postInfo) {
+            fetch('https://jsonplaceholder.typicode.com/posts', {
+                method: 'POST',
+                body: JSON.stringify(postInfo),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+            })
+                .then((response) => response.json())
+                .then((data) => console.log(data));
+                .catch(error => alert("Please try again later"));
+        }
+
+        function displayUsers(users) {
+            const userName = users.map(user => user.username);
+            const ul = document.getElementById("users-container");
+
+            for (let i = 0; i < userName.length; i++) {
+                const username = userName[i];
+                const li = document.createElement("li");
+                li.innerText = username;
+                ul.appendChild(li);
+            }
+        }
+    </script>
+</body>
+
+</html>
